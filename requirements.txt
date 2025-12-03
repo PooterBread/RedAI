@@ -1,0 +1,22 @@
+# RedAI - AI-Powered Penetration Testing Tool
+# Compatible with Udoo Key (RP2040/ESP32)
+
+# Core dependencies
+# Note: For Udoo Key, use lightweight versions where possible
+
+# AI Model Support (choose one or both)
+openai>=1.0.0  # For OpenAI API (GPT-4, GPT-3.5, etc.)
+anthropic>=0.18.0  # For Anthropic API (Claude)
+
+# Database (SQLite is built-in, but included for clarity)
+# No external dependency needed for SQLite
+
+# Optional: For local model support (future implementation)
+# transformers>=4.30.0  # For local HuggingFace models
+# torch>=2.0.0  # If using PyTorch models
+# onnxruntime>=1.15.0  # For ONNX models (lighter weight)
+
+# Utilities
+python-dotenv>=1.0.0  # For environment variable management
+
+
