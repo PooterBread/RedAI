@@ -7,6 +7,7 @@ __pycache__/
 env/
 venv/
 ENV/
+.venv/
 build/
 develop-eggs/
 dist/
@@ -49,5 +50,6 @@ Thumbs.db
 # Exploits directory (user-generated)
 exploits/*.py
 !exploits/__init__.py
+
 
 
