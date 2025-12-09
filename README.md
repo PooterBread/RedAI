@@ -77,6 +77,12 @@ RedAI/
    python init_sample_data.py
    ```
 
+5. **Populate comprehensive vulnerability database** (recommended):
+   ```bash
+   python populate_vulnerability_database.py
+   ```
+   This adds 30+ known vulnerabilities and exploitation methods from OWASP Top 10, CVE database, and common penetration testing techniques.
+
 ## Usage
 
 ### Interactive Mode
@@ -208,14 +214,43 @@ RedAI is designed to work with Udoo Key's hardware constraints:
 
 See `UDOO_KEY_SETUP.md` for complete Udoo Key setup instructions.
 
-## Sample Exploits Included
+## Vulnerability Database
 
-The tool comes with sample exploits for:
-- SQL Injection
-- Directory Traversal
-- API Endpoint Discovery
-- Command Injection
-- Cross-Site Scripting (XSS)
+The tool includes a comprehensive vulnerability database with 30+ known exploits:
+
+### OWASP Top 10 2024
+- Broken Access Control (IDOR)
+- Cryptographic Failures
+- Injection (SQL, NoSQL, LDAP, Command)
+- Insecure Design
+- Security Misconfiguration
+- Vulnerable Components
+- Authentication Failures
+- Software/Data Integrity Failures
+- Security Logging Failures
+- Server-Side Request Forgery (SSRF)
+
+### Additional Vulnerabilities
+- XML External Entity (XXE) Injection
+- File Upload Vulnerabilities
+- Cross-Site Request Forgery (CSRF)
+- XSS Variants (Stored, Reflected, DOM-based)
+- Path Traversal (with encoding bypasses)
+- API Vulnerabilities (Mass Assignment, Rate Limiting)
+- Network Attacks (ARP/DNS Spoofing)
+- Buffer Overflows
+- Server-Side Template Injection (SSTI)
+- Race Conditions
+- Open Redirect
+- HTTP Header Injection
+- Subdomain Takeover
+- Information Disclosure
+- And more...
+
+**To populate the full database:**
+```bash
+python populate_vulnerability_database.py
+```
 
 ## Extending the Tool
 
