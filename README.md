@@ -23,6 +23,7 @@ An intelligent penetration testing tool that uses AI to automate security testin
 
 ## Architecture
 
+### Unified Mode (Single Device)
 ```
 RedAI/
 ├── main.py              # Main application entry point
@@ -30,9 +31,26 @@ RedAI/
 ├── database.py          # SQLite database management
 ├── exploit_executor.py  # Safe exploit execution engine
 ├── config.py            # Configuration management
-├── init_sample_data.py  # Sample exploit data initialization
-└── requirements.txt     # Python dependencies
+└── init_sample_data.py  # Sample exploit data initialization
 ```
+
+### Dual Chipset Mode (Distributed)
+```
+RP2040 (AI Chipset)          ESP32 (Execution Chipset)
+├── rp2040_ai_chipset.py    ├── esp32_execution_chipset.py
+├── ai_engine.py            ├── exploit_executor.py
+├── database.py             ├── network_exploits.py
+└── chipset_communication.py └── chipset_communication.py
+         ↕ UART Communication ↕
+```
+
+**Dual Chipset Benefits:**
+- **RP2040**: Handles AI logic, database, decision-making (better processing power)
+- **ESP32**: Handles network operations, command execution (built-in Wi-Fi/Bluetooth)
+- **Resource Optimization**: Each chipset focuses on its strengths
+- **Parallel Processing**: AI can analyze while execution runs
+
+See `DUAL_CHIPSET_SETUP.md` for detailed setup instructions.
 
 ## Installation
 

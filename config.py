@@ -38,6 +38,19 @@ DATABASE_DIR.mkdir(exist_ok=True)
 EXPLOITS_DIR.mkdir(exist_ok=True)
 LOGS_DIR.mkdir(exist_ok=True)
 
+# Dual Chipset Configuration
+DUAL_CHIPSET_MODE = os.getenv("DUAL_CHIPSET_MODE", "false").lower() == "true"
+CHIPSET_TYPE = os.getenv("CHIPSET_TYPE", "unified")  # unified, rp2040, esp32
+UART_BAUDRATE = int(os.getenv("UART_BAUDRATE", "115200"))
+
+# RP2040 Configuration (AI Chipset)
+RP2040_UART_TX = 0  # GPIO0
+RP2040_UART_RX = 1  # GPIO1
+
+# ESP32 Configuration (Execution Chipset)
+ESP32_UART_TX = 19  # IO19
+ESP32_UART_RX = 22  # IO22
+
 
 
 
