@@ -71,14 +71,21 @@ class RedAI:
                 logger.error(f"Error in interactive mode: {str(e)}")
                 print(f"\nError: {str(e)}")
     
-    def run_pen_test(self):
-        """Run penetration test based on user prompt"""
+    def run_pen_test(
+        self,
+        target: Optional[str] = None,
+        goal: Optional[str] = None,
+        auto_confirm: bool = False,
+    ):
+        """Run penetration test based on user prompt or provided target/goal."""
         print("\n" + "-"*60)
         print("PENETRATION TEST CONFIGURATION")
         print("-"*60)
         
-        target = input("Enter target system/URL: ").strip()
-        goal = input("Enter testing goal (e.g., 'capture flag', 'test authentication'): ").strip()
+        if target is None:
+            target = input("Enter target system/URL: ").strip()
+        if goal is None:
+            goal = input("Enter testing goal (e.g., 'capture flag', 'test authentication'): ").strip()
         
         if not target or not goal:
             print("Error: Target and goal are required")
@@ -102,7 +109,7 @@ class RedAI:
                     exploit = self.db.get_exploit_with_methods(exploit_id)
                     if exploit:
                         print(f"\n✓ Found matching exploit: {exploit['name']}")
-                        self._execute_exploit_flow(exploit, target)
+                        self._execute_exploit_flow(exploit, target, auto_confirm=auto_confirm)
                     else:
                         print(f"\n✗ Exploit ID {exploit_id} not found")
                 else:
@@ -135,13 +142,15 @@ class RedAI:
                 # Get full exploit and execute
                 exploit = self.db.get_exploit_with_methods(exploit_id)
                 if exploit:
-                    self._execute_exploit_flow(exploit, target)
+                    self._execute_exploit_flow(exploit, target, auto_confirm=auto_confirm)
         
         except Exception as e:
             logger.error(f"Error in pen test: {str(e)}")
             print(f"\n✗ Error: {str(e)}")
     
-    def _execute_exploit_flow(self, exploit: Dict, target: str):
+    def _execute_exploit_flow(
+        self, exploit: Dict, target: str, auto_confirm: bool = False
+    ):
         """Execute exploit and record results"""
         print("\n" + "-"*60)
         print("EXPLOIT EXECUTION")
@@ -156,7 +165,9 @@ class RedAI:
         # Execute
         import time
         start_time = time.time()
-        success, output = self.executor.execute_exploit(exploit, target)
+        success, output = self.executor.execute_exploit(
+            exploit, target, auto_confirm=auto_confirm
+        )
         execution_time = time.time() - start_time
         
         # Record results
@@ -253,8 +264,11 @@ def main():
     app = RedAI()
     
     if args.target and args.goal:
-        # Non-interactive mode
-        app.run_pen_test()
+        app.run_pen_test(
+            target=args.target,
+            goal=args.goal,
+            auto_confirm=args.auto_confirm,
+        )
     else:
         # Interactive mode
         app.run_interactive()
