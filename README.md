@@ -1,4 +1,4 @@
-# RedAI
+# RedAI (Work in progress)
 
 RedAI is a Python tool for **authorized security testing**. It combines a local exploit database with an LLM (OpenAI or Anthropic) to match your target and goal to known methods or to draft new step-by-step approaches. Execution is gated by confirmations and safety checks.
 
